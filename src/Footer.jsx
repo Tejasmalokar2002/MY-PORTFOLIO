@@ -109,7 +109,7 @@ export default function Footer() {
 
       {/* Bottom Note */}
       <div className="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-        &copy; {new Date().getFullYear()} Your Name. Built with ❤️ using React & Tailwind CSS.
+        &copy; {new Date().getFullYear()} Tejas Malokar. Built with ❤️.
       </div>
     </footer>
   );
