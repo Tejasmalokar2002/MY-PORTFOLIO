@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaGithub, FaLinkedin, FaBars, FaTimes } from "react-icons/fa";
 import MessageButton from "./MessageButton";
+import coverImage from "./assets/cover.png";
 
 export default function Header() {
   // Mobile menu state
@@ -30,11 +31,16 @@ export default function Header() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2 sm:space-x-4 cursor-pointer select-none"
+         <div className="flex items-center space-x-2 sm:space-x-4 cursor-pointer select-none"
            onClick={() => scrollToSection("home")}>
-            <div className="bg-white text-indigo-800 rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center font-extrabold text-xl sm:text-2xl shadow-lg animate-pulse">
-              P1
-            </div>
+            <div className="bg-white rounded-full w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center shadow-md ring-2 ring-indigo-500 overflow-hidden">
+  <img 
+    src={coverImage} 
+    alt="Logo" 
+    className="w-full h-full object-contain p-1" 
+  />
+</div>
+
             <span className="text-white text-xl sm:text-2xl font-extrabold tracking-wider">
               PageOne
             </span>

@@ -17,7 +17,7 @@ const handleSubmit = (e) => {
   const formattedMessage = `Email: ${formData.email}\nNumber: ${formData.number}\nQuery: ${formData.query}`;
 
   // Send email via EmailJS
-  emailjs.send("service_wnizlhl", "template_7q8wsfh", {
+  emailjs.send("service_q9ashmf", "template_7q8wsfh", {
     from_email: formData.email,
     number: formData.number,
     query: formData.query,
@@ -36,7 +36,7 @@ const handleSubmit = (e) => {
   // Mailto formatted link
   const mailSubject = encodeURIComponent("New Query Submission 🚀");
   const mailBody = encodeURIComponent(formattedMessage);
-  const mailLink = `mailto:tejm1502@gmail.com?subject=${mailSubject}&body=${mailBody}`;
+  const mailLink = `mailto:usdreams14@gmail.com?subject=${mailSubject}&body=${mailBody}`;
 
   console.log("WhatsApp Link:", whatsappLink);
   console.log("Email Link:", mailLink);

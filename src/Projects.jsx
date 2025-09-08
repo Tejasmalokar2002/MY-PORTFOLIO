@@ -5,14 +5,44 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 export default function ProjectsSection() {
   const projects = [
-    { title: "E-Commerce Platform", desc: "Full-stack app with Spring Boot + React, secure payments & analytics.", tech: ["Java", "Spring Boot", "React"], link: "#", github: "#" },
-    { title: "AI Chat Assistant", desc: "Built with NLP & OpenAI APIs, deployed with Docker & Kubernetes.", tech: ["Node.js", "Docker", "K8s"], link: "#", github: "#" },
-    { title: "Mobile Banking App", desc: "Android app with biometric login & realtime notifications.", tech: ["Java", "Android", "Firebase"], link: "#", github: "#" },
-    { title: "Portfolio Website", desc: "3D animated React + Vite portfolio with Tailwind & Framer Motion.", tech: ["React", "Tailwind", "Framer Motion"], link: "#", github: "#" },
-    { title: "Crypto Dashboard", desc: "Realtime market analysis with WebSockets & charting.", tech: ["Next.js", "WebSockets", "Chart.js"], link: "#", github: "#" },
-    { title: "Food Delivery App", desc: "MERN app with live order tracking & Stripe payments.", tech: ["MongoDB", "Express", "React", "Node"], link: "#", github: "#" },
-    { title: "IoT Smart Home", desc: "Control lights & sensors via mobile app + Raspberry Pi.", tech: ["Python", "Flask", "IoT"], link: "#", github: "#" },
-    { title: "Social Media App", desc: "Realtime chat, posts, and notifications with Firebase.", tech: ["React Native", "Firebase"], link: "#", github: "#" },
+    {
+  title: "Liquor Counter",
+  desc: "Liquor store management system for inventory, sales, and reporting.",
+  tech: ["Java", "Spring Boot", "Angular", "MySQL"],
+  link: "https://apps.zambientsystems.com/lc",
+  //github: "#"
+},
+{
+  title: "Liquor Store POS",
+  desc: "Point-of-Sale system for billing, shift management, and stock tracking.",
+  tech: ["Java", "Spring Boot", "Angular", "MySQL"],
+  link: "#",
+  //github: "#"
+},{
+  title: "Liquor Counter Mobile App",
+  desc: "Mobile application for liquor store management including inventory and sales tracking.",
+  tech: ["Ionic", "Spring Boot", "Java", "MySQL"],
+  link: "https://play.google.com/work/apps/details?id=io.ionic.liquorCounter&hl=en_IN",
+  // github: "#"
+},{
+  title: "Bar Counter",
+  desc: "System for managing peg-wise liquor sales, inventory, and real-time billing in bars.",
+  tech: ["Java", "Spring Boot", "Angular", "MySQL"],
+  link: "https://zambient.in/lcbar",
+  //github: "#"
+},{
+  title: "Stewards",
+  desc: "Mobile app for restaurant waiters to take customer orders efficiently and sync with the kitchen or POS.",
+  tech: ["Ionic", "Spring Boot", "Java", "MySQL"],
+  link: "#",
+  //github: "#"
+},{
+  title: "LearnerBits",
+  desc: "An educational platform delivering tech news, programming notes, and curated learning content for students and professionals.",
+  tech: ["WordPress"],
+  link: "https://learnerbits.com",
+  //github: "#"
+},
   ];
 
   const itemCount = projects.length;

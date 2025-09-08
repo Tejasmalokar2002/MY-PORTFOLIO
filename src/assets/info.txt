@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Rosarivo-Regular
+font link: https://fonts.google.com/specimen/Rosarivo
+font author: Pablo Ugerman
+font author site: http://www.ugrdesign.com.ar/
+
+
+icon designer: Larisa Skosyrska
+icon designer link: /creator/Lara.Skosyrska/
+        
+{"bg":"transparent","icon-gradient-0":"#22526E","icon-gradient-1":"#BDB496","font":"#000000","slogan":"#141414"}
+      

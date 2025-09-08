@@ -9,7 +9,7 @@ import {
   SiMysql, SiOracle, SiJira, SiFluentd,
   SiAndroid
 } from "react-icons/si";
-
+import coverImage from "./assets/FooterLogo(W).png";
 export default function Footer() {
   return (
     <footer className="bg-black text-white relative z-50 pt-12 pb-6">
@@ -18,6 +18,12 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* About */}
         <div>
+          <img
+  src={coverImage}
+  alt="Logo"
+  className="w-24 h-24 mb-4 rounded-full object-cover shadow-lg border-2 border-white hover:scale-105 transition duration-300"
+/>
+
           <h4 className="text-xl font-semibold mb-4 text-cyan-400">About Me</h4>
           <p className="text-slate-400">
             Passionate full‑stack developer building modern experiences with Java, React & cloud-native tech.
