@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fdorantesm/react-skill-icons": "^1.0.5",
     "@react-spring/three": "^10.0.1",
     "@react-spring/web": "^10.0.1",
     "@react-three/drei": "^10.7.4",

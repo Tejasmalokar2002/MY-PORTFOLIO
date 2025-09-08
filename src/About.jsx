@@ -5,7 +5,7 @@ import { FaCode, FaRocket, FaUsers, FaLightbulb } from "react-icons/fa";
 
 export default function AboutSection() {
   const features = [
-    {
+    { 
       icon: <FaCode />,
       title: "Clean & Scalable Code",
       desc: "Writing maintainable, modular, and high-performing code with Java, Spring Boot, and modern frameworks.",
