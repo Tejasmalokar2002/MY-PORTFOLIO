@@ -14,7 +14,7 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center text-white font-sans px-4 sm:px-6 lg:px-12 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center text-white font-sans px-4 sm:px-6 lg:px-8 overflow-hidden"
       style={{
         backgroundImage: `url(${LaptopImage})`,
         backgroundSize: "cover",
@@ -26,18 +26,18 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80 z-0" />
 
       {/* Floating Glows - Fixed positioning */}
-      <div className="absolute w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] rounded-full bg-cyan-500/30 blur-[120px] top-[-100px] left-[-150px] animate-pulse z-0" />
-      <div className="absolute w-[250px] sm:w-[350px] h-[250px] sm:h-[350px] rounded-full bg-fuchsia-500/30 blur-[100px] bottom-[-80px] right-[-120px] animate-pulse z-0" />
+      <div className="absolute w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] rounded-full bg-cyan-500/30 blur-[80px] sm:blur-[100px] top-[-50px] left-[-100px] animate-pulse z-0" />
+      <div className="absolute w-[180px] sm:w-[280px] h-[180px] sm:h-[280px] rounded-full bg-fuchsia-500/30 blur-[70px] sm:blur-[90px] bottom-[-40px] right-[-90px] animate-pulse z-0" />
 
       {/* Main Content */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="relative z-10 w-full max-w-5xl p-6 sm:p-10 md:p-12 text-center"
+        className="relative z-10 w-full max-w-4xl p-4 sm:p-6 md:p-8 text-center"
       >
         {/* Name */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight drop-shadow-lg">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 leading-tight drop-shadow-lg">
           Hi — I’m{" "}
           <motion.span
             className="bg-gradient-to-r from-pink-500 via-indigo-400 to-cyan-400 bg-clip-text text-transparent"
@@ -52,7 +52,7 @@ export default function HeroSection() {
         </h1>
 
         {/* Typewriter */}
-        <p className="text-base sm:text-lg md:text-xl text-slate-200 font-medium mb-6">
+        <p className="text-base sm:text-lg md:text-xl text-slate-200 font-medium mb-4 sm:mb-6">
           <Typewriter
             words={["Java Developer", "Software Engineer", "Android Developer"]}
             loop={0}
@@ -65,27 +65,27 @@ export default function HeroSection() {
         </p>
 
         {/* Quote */}
-        <blockquote className="text-slate-100 italic border-l-4 border-cyan-400 pl-4 py-3 mb-6 rounded-md bg-white/10 shadow-lg text-sm sm:text-base">
+        <blockquote className="text-slate-100 italic border-l-4 border-cyan-400 pl-3 sm:pl-4 py-2 sm:py-3 mb-4 sm:mb-6 rounded-md bg-white/10 shadow-lg text-xs sm:text-sm md:text-base">
           "An optimize mind sees an opportunity where others see an obstacle."
         </blockquote>
 
         {/* Description */}
-        <p className="text-sm sm:text-base text-slate-200 max-w-2xl mx-auto mb-8 leading-relaxed">
+        <p className="text-sm sm:text-base text-slate-200 max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed">
           Full Stack Java Developer with expertise in scalable web applications using Java, Spring Boot, Angular, and REST APIs. Strong grasp of Agile, Git, CI/CD, and rapid tech adoption.
         </p>
 
         {/* Projects Button */}
-        <div className="flex justify-center gap-4 flex-wrap mb-8">
+        <div className="flex justify-center gap-4 flex-wrap mb-6 sm:mb-8">
           <a
             href="#projects"
-            className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-black rounded-full font-semibold shadow-lg transition transform hover:scale-110 text-sm sm:text-base"
+            className="px-5 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-black rounded-full font-semibold shadow-lg transition transform hover:scale-110 text-sm sm:text-base"
           >
             🚀 See Projects
           </a>
         </div>
 
         {/* Tech Icons */}
-        <div className="flex flex-wrap justify-center gap-6 sm:gap-8 text-3xl sm:text-4xl md:text-5xl">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-2xl sm:text-3xl md:text-4xl">
           {[
             { icon: <FaJava />, color: "text-red-400", variant: "float1" },
             { icon: <FaAndroid />, color: "text-green-400", variant: "float2" },

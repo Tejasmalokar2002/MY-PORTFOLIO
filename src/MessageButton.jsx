@@ -6,66 +6,102 @@ export default function MessageButton() {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({ email: "", number: "", query: "" });
   const [animateOpen, setAnimateOpen] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-const handleSubmit = (e) => {
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setIsSending(true);
+
+  //   try {
+  //     // Send email via EmailJS
+  //     await emailjs.send(
+  //       "service_q9ashmf", 
+  //       "template_7q8wsfh", 
+  //       {
+  //         from_email: formData.email,
+  //         to_email: "usdreams14@gmail.com", // Your email
+  //         number: formData.number,
+  //         message: formData.query, // Changed from 'query' to 'message' to match template
+  //         reply_to: formData.email // So you can reply directly
+  //       }, 
+  //       "31xj1w4a5nLY4XzRs"
+  //     );
+
+  //     // Show success message
+  //     setShowSuccess(true);
+  //     launchConfetti();
+      
+  //     // Clear fields
+  //     setFormData({ email: "", number: "", query: "" });
+      
+  //     // Close modal after delay
+  //     setTimeout(() => {
+  //       setOpen(false);
+  //       setShowSuccess(false);
+  //     }, 3000);
+
+  //   } catch (error) {
+  //     console.error("❌ Failed to send email:", error);
+  //     alert("Failed to send message. Please try again.");
+  //   } finally {
+  //     setIsSending(false);
+  //   }
+  // };
+
+
+  const handleSubmit = async (e) => {
   e.preventDefault();
+  setIsSending(true);
 
-  const formattedMessage = `Email: ${formData.email}\nNumber: ${formData.number}\nQuery: ${formData.query}`;
+  const serviceId = "service_q9ashmf"; // Replace with your actual service ID
+  const userId = "31xj1w4a5nLY4XzRs"; // Replace with your actual user/public key
 
-  // Send email via EmailJS
-  emailjs.send("service_q9ashmf", "template_7q8wsfh", {
-    from_email: formData.email,
-    number: formData.number,
-    query: formData.query,
-  }, "31xj1w4a5nLY4XzRs")
-  .then(() => {
-    console.log("✅ Email sent successfully!");
-  })
-  .catch((err) => {
-    console.error("❌ Failed to send email:", err);
-  });
+  try {
+    // 1. Send email to YOU
+    await emailjs.send(
+      serviceId,
+      "template_pnop4wi", // your first template ID
+      {
+        from_email: formData.email,
+        number: formData.number,
+        message: formData.query,
+      },
+      userId
+    );
 
-  // WhatsApp formatted link
-  const whatsappMsg = encodeURIComponent(formattedMessage);
-  const whatsappLink = `https://wa.me/91XXXXXXXXXX?text=${whatsappMsg}`;
+    // 2. Send auto-reply to USER
+    await emailjs.send(
+      serviceId,
+      "template_7q8wsfh", // second template ID
+      {
+        from_email: formData.email,
+      },
+      userId
+    );
 
-  // Mailto formatted link
-  const mailSubject = encodeURIComponent("New Query Submission 🚀");
-  const mailBody = encodeURIComponent(formattedMessage);
-  const mailLink = `mailto:usdreams14@gmail.com?subject=${mailSubject}&body=${mailBody}`;
+    // 🎉 Show success
+    setShowSuccess(true);
+    launchConfetti();
 
-  console.log("WhatsApp Link:", whatsappLink);
-  console.log("Email Link:", mailLink);
+    // Reset form
+    setFormData({ email: "", number: "", query: "" });
 
-  // 🎉 Confetti
-  launchConfetti();
-
-  // Celebration popup
-  const celebration = document.createElement("div");
-  celebration.innerText = "🎉 Hurray! Message Sent 🚀";
-  celebration.style.position = "fixed";
-  celebration.style.top = "50%";
-  celebration.style.left = "50%";
-  celebration.style.transform = "translate(-50%, -50%)";
-  celebration.style.background = "rgba(0,0,0,0.8)";
-  celebration.style.color = "white";
-  celebration.style.padding = "20px 30px";
-  celebration.style.borderRadius = "12px";
-  celebration.style.fontSize = "20px";
-  celebration.style.zIndex = "100000";
-  document.body.appendChild(celebration);
-
-  setTimeout(() => celebration.remove(), 2000);
-
-  // ✅ Clear fields
-  setFormData({ email: "", number: "", query: "" });
-
-  // ✅ Close modal
-  setOpen(false);
+    // Close form after 3s
+    setTimeout(() => {
+      setOpen(false);
+      setShowSuccess(false);
+    }, 3000);
+  } catch (error) {
+    console.error("❌ Email failed:", error);
+    alert("Something went wrong. Please try again.");
+  } finally {
+    setIsSending(false);
+  }
 };
 
 
@@ -75,46 +111,46 @@ const handleSubmit = (e) => {
     setTimeout(() => setAnimateOpen(true), 10);
   };
 
-  // 🔥 Pure CSS + JS confetti blast
-  // 💥 Bomb-style confetti blast
-const launchConfetti = () => {
-  const colors = ["#ff0a54", "#ff477e", "#ff85a1", "#fbb1bd", "#f9bec7", "#00f5d4", "#00bbf9", "#9b5de5"];
-  const body = document.body;
+  const closeForm = () => {
+    setAnimateOpen(false);
+    setTimeout(() => setOpen(false), 300);
+  };
 
-  const centerX = window.innerWidth / 2;
-  const centerY = window.innerHeight / 2;
+  // Confetti function (unchanged)
+  const launchConfetti = () => {
+    const colors = ["#ff0a54", "#ff477e", "#ff85a1", "#fbb1bd", "#f9bec7", "#00f5d4", "#00bbf9", "#9b5de5"];
+    const body = document.body;
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
 
-  for (let i = 0; i < 500; i++) {   // 200 = dense explosion
-    const confetti = document.createElement("div");
-    confetti.classList.add("confetti");
-    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    confetti.style.left = `${centerX}px`;
-    confetti.style.top = `${centerY}px`;
-    body.appendChild(confetti);
+    for (let i = 0; i < 500; i++) {
+      const confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.left = `${centerX}px`;
+      confetti.style.top = `${centerY}px`;
+      body.appendChild(confetti);
 
-    // random direction + distance
-    const angle = Math.random() * 2 * Math.PI; // radians
-    const distance = Math.random() * 500 + 100; // blast radius
+      const angle = Math.random() * 2 * Math.PI;
+      const distance = Math.random() * 500 + 100;
+      const x = Math.cos(angle) * distance;
+      const y = Math.sin(angle) * distance;
 
-    const x = Math.cos(angle) * distance;
-    const y = Math.sin(angle) * distance;
+      confetti.animate(
+        [
+          { transform: "translate(0,0) scale(1)", opacity: 1 },
+          { transform: `translate(${x}px, ${y}px) scale(${Math.random() * 1.5 + 0.5})`, opacity: 0 }
+        ],
+        {
+          duration: 1200 + Math.random() * 800,
+          easing: "ease-out",
+          fill: "forwards"
+        }
+      );
 
-    confetti.animate(
-      [
-        { transform: "translate(0,0) scale(1)", opacity: 1 },
-        { transform: `translate(${x}px, ${y}px) scale(${Math.random() * 1.5 + 0.5})`, opacity: 0 }
-      ],
-      {
-        duration: 1200 + Math.random() * 800,
-        easing: "ease-out",
-        fill: "forwards"
-      }
-    );
-
-    setTimeout(() => confetti.remove(), 2000);
-  }
-};
-
+      setTimeout(() => confetti.remove(), 2000);
+    }
+  };
 
   return (
     <>
@@ -131,10 +167,10 @@ const launchConfetti = () => {
           <div className="absolute inset-0 rounded-full planet-glow" />
         </div>
 
-{/* Small Mail Indicator */}
-<div className="absolute -top-1 -right-1 bg-pink-500 text-white text-[10px] px-1.5 py-0.5 rounded-full shadow-md animate-bounce">
-  ✉️
-</div>
+        {/* Small Mail Indicator */}
+        <div className="absolute -top-1 -right-1 bg-pink-500 text-white text-[10px] px-1.5 py-0.5 rounded-full shadow-md animate-bounce">
+          ✉️
+        </div>
 
         {/* Rings */}
         <div className="absolute w-12 h-12 border border-dashed border-indigo-300 rounded-full opacity-60 group-hover:border-pink-400 animate-rotate-horizontal z-10 ring-glow" />
@@ -156,6 +192,17 @@ const launchConfetti = () => {
                 transform transition-all duration-300 
                 ${animateOpen ? "scale-100 opacity-100" : "scale-75 opacity-0"}`}
             >
+              {/* Success Message */}
+              {showSuccess && (
+                <div className="absolute inset-0 bg-green-900/90 flex items-center justify-center rounded-2xl z-20">
+                  <div className="text-center p-4">
+                    <div className="text-4xl mb-2">🎉</div>
+                    <h3 className="text-xl font-bold mb-2">Message Sent!</h3>
+                    <p className="text-sm">We'll get back to you soon!</p>
+                  </div>
+                </div>
+              )}
+
               {/* Star Background */}
               <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 animate-pulse"></div>
 
@@ -172,6 +219,7 @@ const launchConfetti = () => {
                     className="peer w-full px-3 pt-5 pb-2 rounded bg-black/30 border border-indigo-400 text-white placeholder-transparent focus:border-pink-500 focus:ring-2 focus:ring-pink-400 focus:outline-none"
                     placeholder="Your Email"
                     required
+                    disabled={isSending}
                   />
                   <label className="absolute left-3 top-2 text-gray-400 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-2 peer-focus:text-sm peer-focus:text-pink-400">
                     Your Email
@@ -187,6 +235,7 @@ const launchConfetti = () => {
                     className="peer w-full px-3 pt-5 pb-2 rounded bg-black/30 border border-indigo-400 text-white placeholder-transparent focus:border-pink-500 focus:ring-2 focus:ring-pink-400 focus:outline-none"
                     placeholder="Your Number"
                     required
+                    disabled={isSending}
                   />
                   <label className="absolute left-3 top-2 text-gray-400 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-2 peer-focus:text-sm peer-focus:text-pink-400">
                     Your Number
@@ -202,6 +251,7 @@ const launchConfetti = () => {
                     className="peer w-full px-3 pt-5 pb-2 rounded bg-black/30 border border-indigo-400 text-white placeholder-transparent focus:border-pink-500 focus:ring-2 focus:ring-pink-400 focus:outline-none"
                     placeholder="Your Query"
                     required
+                    disabled={isSending}
                   />
                   <label className="absolute left-3 top-2 text-gray-400 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-2 peer-focus:text-sm peer-focus:text-pink-400">
                     Your Query
@@ -210,32 +260,33 @@ const launchConfetti = () => {
 
                 {/* Futuristic Button */}
                 <button
-  type="submit"
-  className="w-full py-3 rounded-full bg-gradient-to-r from-indigo-500 to-pink-500 
-             hover:from-pink-500 hover:to-indigo-500 transition-all duration-300 
-             font-semibold shadow-lg shadow-pink-400/30 tracking-wide text-lg"
->
-  🚀 Launch Message
-</button>
-
+                  type="submit"
+                  disabled={isSending}
+                  className="w-full py-3 rounded-full bg-gradient-to-r from-indigo-500 to-pink-500 
+                           hover:from-pink-500 hover:to-indigo-500 transition-all duration-300 
+                           font-semibold shadow-lg shadow-pink-400/30 tracking-wide text-lg
+                           disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSending ? "Sending..." : "🚀 Launch Message"}
+                </button>
               </form>
 
               {/* Close Button */}
-             <button
-  onClick={() => setOpen(false)}
-  className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center 
-             bg-gray-700/50 hover:bg-gray-600 text-white rounded-full shadow-md"
->
-  ✖
-</button>
-
+              <button
+                onClick={closeForm}
+                className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center 
+                         bg-gray-700/50 hover:bg-gray-600 text-white rounded-full shadow-md"
+                disabled={isSending}
+              >
+                ✖
+              </button>
             </div>
           </div>,
           document.body
         )}
 
-      {/* Planet Animations + Confetti style */}
-      <style jsx>{`
+      {/* Styles remain the same */}
+           <style jsx>{`
         @keyframes backgroundScroll {
           0% {
             background-position: 0% 0%;

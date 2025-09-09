@@ -9,6 +9,8 @@ import Skills from "./Skills";
 import Experience from "./Experience";
 import ContactUs from "./ContactUs";
 import Footer from "./Footer";
+import ProjectsSectionRevised from "./ProjectSectionRevised";
+import Projects from "./Projects";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,14 +31,15 @@ function App() {
     <>
       <Header />
       <Home />
-      <ChakraSpinner />
+      {/* <ChakraSpinner /> */}
       {isLoading && (
         <div className="fixed inset-0 flex items-center justify-center bg-black z-50">
           <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
         </div>
       )}
       <About/>
-      <ProjectsSection/>
+      <Projects/>
+      {/* <ProjectsSectionRevised/> */}
       <Experience/>
       <Skills/>
       <Footer/>
